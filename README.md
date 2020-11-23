@@ -149,7 +149,7 @@ Returns a traverseJson iterable, usefull for use it in a for loop.
 **Example**  
 ```javascript
 const { createIterator } = require('traverse-json');
-const options =
+const options = {...}
 const ientries = createIterator({
   foo: 0,
   nested: {
@@ -165,7 +165,7 @@ const ientries = createIterator({
      },
    },
   bar: 1,
-}, {});
+}, options);
 
 for (let [k, v] of ientries) {
   console.log(k, v);

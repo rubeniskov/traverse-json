@@ -188,7 +188,7 @@ const traverseJson = (obj, opts) => {
  * @example
  * ```javascript
  * const { createIterator } = require('traverse-json');
- * const options =
+ * const options = {...}
  * const ientries = createIterator({
  *   foo: 0,
  *   nested: {
@@ -204,7 +204,7 @@ const traverseJson = (obj, opts) => {
  *      },
  *    },
  *   bar: 1,
- * }, {});
+ * }, options);
  *
  * for (let [k, v] of ientries) {
  *   console.log(k, v);
