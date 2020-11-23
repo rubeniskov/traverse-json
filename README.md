@@ -244,7 +244,7 @@ for (let [k, v] of ientries) {
 | [opts.recursive] | <code>Boolean</code> | <code>true</code> | enable/disable nested arrays and objects recursion |
 | [opts.nested] | <code>Boolean</code> | <code>false</code> | also emit nested array or objects |
 | [opts.step] | <code>Boolean</code> | <code>1</code> | the step to increment, default 1 |
-| [opts.test] | <code>String</code> \| <code>function</code> \| <code>RegeExp</code> | <code></code> | regexp, string [minimatch](https://www.npmjs.com/package/minimatch) or function to filter properties |
+| [opts.test] | <code>String</code> \| <code>function</code> \| <code>RegeExp</code> | <code>false</code> | regexp, string [minimatch](https://www.npmjs.com/package/minimatch) or function to filter properties |
 
 <a name="TraverseJsonEntry"></a>
 

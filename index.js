@@ -12,7 +12,7 @@ const {
  * @prop {Boolean} [opts.recursive=true] enable/disable nested arrays and objects recursion
  * @prop {Boolean} [opts.nested=false] also emit nested array or objects
  * @prop {Boolean} [opts.step=1] the step to increment, default 1
- * @prop {String|Function|RegeExp} [opts.test=null] regexp, string [minimatch](https://www.npmjs.com/package/minimatch) or function to filter properties
+ * @prop {String|Function|RegeExp} [opts.test=false] regexp, string [minimatch](https://www.npmjs.com/package/minimatch) or function to filter properties
  */
 
 /**
