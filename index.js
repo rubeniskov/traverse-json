@@ -9,10 +9,10 @@ const {
 
 /**
  * @typedef {Object} TraverseJsonOptions
- * @prop {Boolean} [opts.recursive] enable/disable nested arrays and objects recursion
- * @prop {Boolean} [opts.nested] also emit nested array or objects
- * @prop {Boolean} [opts.step] the step to increment, default 1
- * @prop {String|Function|RegeExp} [opts.test] regexp, string [minimatch](https://www.npmjs.com/package/minimatch) or function to filter properties
+ * @prop {Boolean} [opts.recursive=true] enable/disable nested arrays and objects recursion
+ * @prop {Boolean} [opts.nested=false] also emit nested array or objects
+ * @prop {Boolean} [opts.step=1] the step to increment, default 1
+ * @prop {String|Function|RegeExp} [opts.test=null] regexp, string [minimatch](https://www.npmjs.com/package/minimatch) or function to filter properties
  */
 
 /**
@@ -69,7 +69,10 @@ const {
  *    console.log(value);
  * }
  * ```
- * ### Outputs
+ * ## Outputs
+ *
+ * ### [Default options](#traversejsonoptions--object)
+ *
  * __{}__
  * ```
  * [ '/foo', 0 ]
@@ -79,6 +82,10 @@ const {
  * [ '/nested/nested/nested/nested/depth', 4 ]
  * [ '/bar', 1 ]
  * ```
+ *
+ *
+ * ### Return eather the nested and flatten values
+ *
  * __{ [nested](#traversejsonoptions--object): true }__
  * ```
  * [ '/foo', 0 ]
@@ -94,6 +101,10 @@ const {
  * [ '/nested/nested/nested/nested/depth', 4 ]
  * [ '/bar', 1 ]
  * ```
+ *
+ *
+ * ### Only traverse on depth 1
+ *
  * __{ [recursive](#traversejsonoptions--object): false }__
  * ```
  * [ '/foo', 0 ]
@@ -101,11 +112,19 @@ const {
  *   { depth: 1, nested: { depth: 2, nested: [Object] } } ]
  * [ '/bar', 1 ]
  * ```
+ *
+ *
+ * ### Skips even entries
+ *
  * __{ [step](#traversejsonoptions--object): 2 }__
  * ```
  * [ '/foo', 0 ]
  * [ '/bar', 1 ]
  * ```
+ *
+ *
+ * ### Match only the paths ending with _depth_
+ *
  * __{ [test](#traversejsonoptions--object): /depth$/ }__
  * ```
  * [ '/nested/depth', 1 ]
@@ -113,7 +132,11 @@ const {
  * [ '/nested/nested/nested/depth', 3 ]
  * [ '/nested/nested/nested/nested/depth', 4 ]
  * ```
- * __{ [test](#traversejsonoptions--object): /nested$/, nested: true }__
+ *
+ *
+ * ### Return eather the nested and flatten values ending with _nested_
+ *
+ * __{ [test](#traversejsonoptions--object): /nested$/, [nested](#traversejsonoptions--object): true }__
  * ```
  * [ '/nested',
  *   { depth: 1, nested: { depth: 2, nested: [Object] } } ]
@@ -122,6 +145,10 @@ const {
  * [ '/nested/nested/nested', { depth: 3, nested: { depth: 4 } } ]
  * [ '/nested/nested/nested/nested', { depth: 4 } ]
  * ```
+ *
+ *
+ * ### Match only the paths ending with _foo_ or _depth_
+ *
  * __{ [test](#traversejsonoptions--object): "&#42;&#42;/{depth,foo}" }__
  * ```
  * [ '/foo', 0 ]
@@ -130,11 +157,19 @@ const {
  * [ '/nested/nested/nested/depth', 3 ]
  * [ '/nested/nested/nested/nested/depth', 4 ]
  * ```
+ *
+ *
+ * ### Match entries which has a number value equal or greater than 3
+ *
  * __{ [test](#traversejsonoptions--object): ([,value]) => typeof value === 'number' && value >= 3 }__
  * ```
  * [ '/nested/nested/nested/depth', 3 ]
  * [ '/nested/nested/nested/nested/depth', 4 ]
  * ```
+ *
+ *
+ * ### Traverse recursively through the same key
+ *
  * __{ [test](#traversejsonoptions--object): "@nested" }__
  * ```
  * [ '/nested',
