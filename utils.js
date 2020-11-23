@@ -4,6 +4,9 @@ const minimatch = require('minimatch');
 const isTraversable = (value) => Array.isArray(value) || isPlainObject(value);
 
 const createMatcher = (test) => {
+  if (typeof test === 'function') {
+    return test;
+  }
   if (test && test.length) {
     const [pattern, opts] = !Array.isArray(test) ? [test] : test;
     test = ([path]) => minimatch(path, pattern,opts);

@@ -96,7 +96,7 @@ test('should iterate through all entries of the given object recursively includi
   iterateEqual(t, ientries, expected);
 });
 
-test('should iterate through 1 depth entries of the given object nested object', (t) => {
+test('should iterate through 1 depth entries of the given nested object', (t) => {
 
   const expected = [
     ['/a', 0],
@@ -110,7 +110,7 @@ test('should iterate through 1 depth entries of the given object nested object',
   iterateEqual(t, ientries, expected);
 });
 
-test('should iterate filtering the path starting with "nested" though the flatten entries of the given nested object', (t) => {
+test('should iterate filtering the path starting with "nested" through the flatten entries of the given nested object', (t) => {
 
   const expected = [
     ['/nested/depth', 1],
@@ -126,7 +126,7 @@ test('should iterate filtering the path starting with "nested" though the flatte
   iterateEqual(t, ientries, expected, true);
 });
 
-test('should iterate filtering the path starting with "nested" though the entries of the given nested object', (t) => {
+test('should iterate filtering the path starting with "nested" through the entries of the given nested object', (t) => {
 
   const expected = [
     ['/nested', recursiveObject.nested],
@@ -147,7 +147,7 @@ test('should iterate filtering the path starting with "nested" though the entrie
   iterateEqual(t, ientries, expected, true);
 });
 
-test('should iterate filtering the path with ending with "nested" though the entries of the given nested object', (t) => {
+test('should iterate filtering the path with ending with "nested" through the entries of the given nested object', (t) => {
 
   const expected = [
     ['/nested', recursiveObject.nested],
@@ -164,8 +164,7 @@ test('should iterate filtering the path with ending with "nested" though the ent
   iterateEqual(t, ientries, expected, true);
 });
 
-
-test('should iterate filtering with minimatch though the entries of the given object nested object', (t) => {
+test('should iterate filtering using a fuction through the entries of the given nested object', (t) => {
 
   const expected = [
     [ '/foo', 0 ],
@@ -187,7 +186,7 @@ test('should iterate filtering with minimatch though the entries of the given ob
   iterateEqual(t, ientries, expected, true);
 });
 
-test('should iterate filtering with minimatch including options though the entries of the given object nested object', (t) => {
+test('should iterate filtering with minimatch including options through the entries of the given nested object', (t) => {
 
   const expected = [];
 
@@ -202,7 +201,33 @@ test('should iterate filtering with minimatch including options though the entri
   iterateEqual(t, ientries, expected, true);
 });
 
+test('should iterate filtering with minimatch through the entries of the given nested object', (t) => {
 
+  const expected = [
+    [ '/foo', 0 ],
+    [ '/nested/depth', 1 ],
+    [ '/nested/nested/depth', 2 ],
+    [ '/nested/nested/nested/depth', 3 ],
+    [ '/nested/nested/nested/nested/depth', 4 ],
+    [ '/bar', 1 ],
+    [ '/a', 0 ],
+    [ '/b', 1 ],
+    [ '/c/foo/bar/0', 1 ],
+    [ '/c/foo/bar/1', 2 ],
+    [ '/c/foo/bar/2', 3 ],
+    [ '/d', 3 ],
+  ];
+
+  const merged = {
+    ...recursiveObject, ...nestedObject,
+  };
+
+  const ientries = traverseObject(merged, {
+    test: ([, value]) => typeof value === 'number',
+  });
+
+  iterateEqual(t, ientries, expected, true);
+});
 
 test('should works as iterable', (t) => {
 

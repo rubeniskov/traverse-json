@@ -10,7 +10,7 @@ const {
  * @prop {Boolean} [opts.recursive] enable/disable nested arrays and objects recursion
  * @prop {Boolean} [opts.nested] also emit nested array or objects
  * @prop {Boolean} [opts.step] the step to increment, default 1
- * @prop {Boolean} [opts.test] regexp, string [minimatch](https://www.npmjs.com/package/minimatch) or function to filter properties
+ * @prop {String|Function|RegeExp} [opts.test] regexp, string [minimatch](https://www.npmjs.com/package/minimatch) or function to filter properties
  */
 
 /**
@@ -125,6 +125,11 @@ const {
  * [ '/foo', 0 ]
  * [ '/nested/depth', 1 ]
  * [ '/nested/nested/depth', 2 ]
+ * [ '/nested/nested/nested/depth', 3 ]
+ * [ '/nested/nested/nested/nested/depth', 4 ]
+ * ```
+ * __{ [test](#traversejsonoptions--object): ([,value]) => typeof value === 'number' && value >= 3 }__
+ * ```
  * [ '/nested/nested/nested/depth', 3 ]
  * [ '/nested/nested/nested/nested/depth', 4 ]
  * ```
