@@ -138,6 +138,11 @@ __{ [test](#traversejsonoptions--object): "&#42;&#42;/{depth,foo}" }__
 [ '/nested/nested/nested/depth', 3 ]
 [ '/nested/nested/nested/nested/depth', 4 ]
 ```
+__{ [test](#traversejsonoptions--object): ([,value]) => typeof value === 'number' && value >= 3 }__
+```
+[ '/nested/nested/nested/depth', 3 ]
+[ '/nested/nested/nested/nested/depth', 4 ]
+```
 <a name="createIterator"></a>
 
 ## createIterator(obj, [opts]) ⇒ <code>Iterable</code>
@@ -195,7 +200,7 @@ for (let [k, v] of ientries) {
 | [opts.recursive] | <code>Boolean</code> | enable/disable nested arrays and objects recursion |
 | [opts.nested] | <code>Boolean</code> | also emit nested array or objects |
 | [opts.step] | <code>Boolean</code> | the step to increment, default 1 |
-| [opts.test] | <code>Boolean</code> | regexp, string [minimatch](https://www.npmjs.com/package/minimatch) or function to filter properties |
+| [opts.test] | <code>String</code> \| <code>function</code> \| <code>RegeExp</code> | regexp, string [minimatch](https://www.npmjs.com/package/minimatch) or function to filter properties |
 
 <a name="TraverseJsonEntry"></a>
 
