@@ -14,8 +14,14 @@ const {
  */
 
 /**
+ * @typedef {Array<string, any>} TraverseJsonEntry
+ * @prop {string} 0 Object path
+ * @prop {any} 1 Value
+ */
+
+/**
  * @typedef {Object} TraverseIteratorResult
- * @prop {Array<String, any>} value
+ * @prop {TraverseJsonEntry} value key value pair with the key as a full path of the property following the [json standard path format](https://tools.ietf.org/html/rfc6902#section-3)
  * @prop {Boolean} done
  */
 
@@ -62,7 +68,7 @@ const {
  * }
  * ```
  * ### Outputs
- * `{}`
+ * __{}__
  * ```
  * [ '/foo', 0 ]
  * [ '/nested/depth', 1 ]
@@ -71,7 +77,7 @@ const {
  * [ '/nested/nested/nested/nested/depth', 4 ]
  * [ '/bar', 1 ]
  * ```
- * `{ nested: true }`
+ * __{ [nested](#traversejsonoptions--object): true }__
  * ```
  * [ '/foo', 0 ]
  * [ '/nested',
@@ -86,26 +92,26 @@ const {
  * [ '/nested/nested/nested/nested/depth', 4 ]
  * [ '/bar', 1 ]
  * ```
- * `{ recursive: false }`
+ * __{ [recursive](#traversejsonoptions--object): false }__
  * ```
  * [ '/foo', 0 ]
  * [ '/nested',
  *   { depth: 1, nested: { depth: 2, nested: [Object] } } ]
  * [ '/bar', 1 ]
  * ```
- * `{ step: 2 }`
+ * __{ [step](#traversejsonoptions--object): 2 }__
  * ```
  * [ '/foo', 0 ]
  * [ '/bar', 1 ]
  * ```
- * `{ test: /depth$/ }`
+ * __{ [test](#traversejsonoptions--object): /depth$/ }__
  * ```
  * [ '/nested/depth', 1 ]
  * [ '/nested/nested/depth', 2 ]
  * [ '/nested/nested/nested/depth', 3 ]
  * [ '/nested/nested/nested/nested/depth', 4 ]
  * ```
- * `{ test: /nested$/, nested: true }`
+ * __{ [test](#traversejsonoptions--object): /nested$/, nested: true }__
  * ```
  * [ '/nested',
  *   { depth: 1, nested: { depth: 2, nested: [Object] } } ]
@@ -114,7 +120,7 @@ const {
  * [ '/nested/nested/nested', { depth: 3, nested: { depth: 4 } } ]
  * [ '/nested/nested/nested/nested', { depth: 4 } ]
  * ```
- * `{ test: "**\/{depth,foo}" }`
+ * __{ [test](#traversejsonoptions--object): "&#42;&#42;/{depth,foo}" }__
  * ```
  * [ '/foo', 0 ]
  * [ '/nested/depth', 1 ]

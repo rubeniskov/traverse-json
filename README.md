@@ -26,6 +26,8 @@ returning the iterator result with the full path and its value</p>
 <dl>
 <dt><a href="#TraverseJsonOptions">TraverseJsonOptions</a> : <code>Object</code></dt>
 <dd></dd>
+<dt><a href="#TraverseJsonEntry">TraverseJsonEntry</a> : <code>Array.&lt;string, any&gt;</code></dt>
+<dd></dd>
 <dt><a href="#TraverseIteratorResult">TraverseIteratorResult</a> : <code>Object</code></dt>
 <dd></dd>
 <dt><a href="#TraverseIterator">TraverseIterator</a> ⇒ <code><a href="#TraverseIteratorResult">TraverseIteratorResult</a></code></dt>
@@ -76,7 +78,7 @@ for (;;) {
 }
 ```
 ### Outputs
-`{}`
+__{}__
 ```
 [ '/foo', 0 ]
 [ '/nested/depth', 1 ]
@@ -85,7 +87,7 @@ for (;;) {
 [ '/nested/nested/nested/nested/depth', 4 ]
 [ '/bar', 1 ]
 ```
-`{ nested: true }`
+__{ [nested](#traversejsonoptions--object): true }__
 ```
 [ '/foo', 0 ]
 [ '/nested',
@@ -100,26 +102,26 @@ for (;;) {
 [ '/nested/nested/nested/nested/depth', 4 ]
 [ '/bar', 1 ]
 ```
-`{ recursive: false }`
+__{ [recursive](#traversejsonoptions--object): false }__
 ```
 [ '/foo', 0 ]
 [ '/nested',
   { depth: 1, nested: { depth: 2, nested: [Object] } } ]
 [ '/bar', 1 ]
 ```
-`{ step: 2 }`
+__{ [step](#traversejsonoptions--object): 2 }__
 ```
 [ '/foo', 0 ]
 [ '/bar', 1 ]
 ```
-`{ test: /depth$/ }`
+__{ [test](#traversejsonoptions--object): /depth$/ }__
 ```
 [ '/nested/depth', 1 ]
 [ '/nested/nested/depth', 2 ]
 [ '/nested/nested/nested/depth', 3 ]
 [ '/nested/nested/nested/nested/depth', 4 ]
 ```
-`{ test: /nested$/, nested: true }`
+__{ [test](#traversejsonoptions--object): /nested$/, nested: true }__
 ```
 [ '/nested',
   { depth: 1, nested: { depth: 2, nested: [Object] } } ]
@@ -128,7 +130,7 @@ for (;;) {
 [ '/nested/nested/nested', { depth: 3, nested: { depth: 4 } } ]
 [ '/nested/nested/nested/nested', { depth: 4 } ]
 ```
-`{ test: "**\/{depth,foo}" }`
+__{ [test](#traversejsonoptions--object): "&#42;&#42;/{depth,foo}" }__
 ```
 [ '/foo', 0 ]
 [ '/nested/depth', 1 ]
@@ -195,16 +197,27 @@ for (let [k, v] of ientries) {
 | [opts.step] | <code>Boolean</code> | the step to increment, default 1 |
 | [opts.test] | <code>Boolean</code> | regexp, string [minimatch](https://www.npmjs.com/package/minimatch) or function to filter properties |
 
+<a name="TraverseJsonEntry"></a>
+
+## TraverseJsonEntry : <code>Array.&lt;string, any&gt;</code>
+**Kind**: global typedef  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| 0 | <code>string</code> | Object path |
+| 1 | <code>any</code> | Value |
+
 <a name="TraverseIteratorResult"></a>
 
 ## TraverseIteratorResult : <code>Object</code>
 **Kind**: global typedef  
 **Properties**
 
-| Name | Type |
-| --- | --- |
-| value | <code>Array.&lt;String, any&gt;</code> | 
-| done | <code>Boolean</code> | 
+| Name | Type | Description |
+| --- | --- | --- |
+| value | [<code>TraverseJsonEntry</code>](#TraverseJsonEntry) | key value pair with the key as a full path of the property following the [json standard path format](https://tools.ietf.org/html/rfc6902#section-3) |
+| done | <code>Boolean</code> |  |
 
 <a name="TraverseIterator"></a>
 
