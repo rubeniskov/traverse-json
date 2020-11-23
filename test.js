@@ -229,6 +229,26 @@ test('should iterate filtering with minimatch through the entries of the given n
   iterateEqual(t, ientries, expected, true);
 });
 
+test('should iterate recursively through the same key', (t) => {
+
+  const expected = [
+    ['/nested', recursiveObject.nested],
+    ['/nested/nested', recursiveObject.nested.nested],
+    ['/nested/nested/nested', recursiveObject.nested.nested.nested],
+    ['/nested/nested/nested/nested', recursiveObject.nested.nested.nested.nested],
+  ];
+
+  const merged = {
+    ...recursiveObject, ...nestedObject,
+  };
+
+  const ientries = traverseObject(merged, {
+    test: '@nested',
+  });
+
+  iterateEqual(t, ientries, expected, true);
+});
+
 test('should works as iterable', (t) => {
 
   const { createIterator } = traverseObject;

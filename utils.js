@@ -1,6 +1,8 @@
 const { isPlainObject } = require('is-plain-object');
 const minimatch = require('minimatch');
 
+const JSONPATH_SEP = '/';
+
 const isTraversable = (value) => Array.isArray(value) || isPlainObject(value);
 
 const createMatcher = (test) => {
@@ -15,7 +17,7 @@ const createMatcher = (test) => {
   return test && test.test ? ([path]) => test.test(path) : test;
 };
 
-const formatJsonPath = (prefix, key) => [prefix, key].join('/');
+const formatJsonPath = (prefix, key) => [prefix, key].join(JSONPATH_SEP);
 
 /**
  * Wraps a function iteratior to become an iterable
@@ -45,5 +47,6 @@ module.exports = {
   isTraversable,
   createMatcher,
   wrapIterator,
+  formatJsonPath,
   entries,
 };

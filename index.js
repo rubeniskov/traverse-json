@@ -3,6 +3,8 @@ const {
   createMatcher,
   wrapIterator,
   entries,
+  formatJsonPath,
+  JSONPATH_SEP,
 } = require('./utils');
 
 /**
@@ -133,34 +135,57 @@ const {
  * [ '/nested/nested/nested/depth', 3 ]
  * [ '/nested/nested/nested/nested/depth', 4 ]
  * ```
+ * __{ [test](#traversejsonoptions--object): "@nested" }__
+ * ```
+ * [ '/nested',
+ *   { depth: 1, nested: { depth: 2, nested: [Object] } } ]
+ * [ '/nested/nested',
+ *   { depth: 2, nested: { depth: 3, nested: [Object] } } ]
+ * [ '/nested/nested/nested', { depth: 3, nested: { depth: 4 } } ]
+ * [ '/nested/nested/nested/nested', { depth: 4 } ]
+ * ```
  */
 const traverseJson = (obj, opts) => {
-  const {
+  let {
     recursive = true,
     nested = false,
     test = null,
     step = 1,
   } = { ...opts };
 
-  let filter = createMatcher(test);
+  let rkey;
+  let filter;
   let overall = [];
   let cursor = 0;
 
+  if (typeof test === 'string' && test[0] === '@') {
+    rkey = test.substring(1);
+    nested = true;
+    filter = false;
+  } else {
+    filter = createMatcher(test);
+  }
+
   const dive = (value, prefix) => {
-    const remain = overall.slice(cursor + 1);
+    if (rkey) {
+      overall = value[rkey] !== undefined
+        ? [[formatJsonPath(prefix, rkey), value[rkey]]]
+        : [];
+    } else {
+      const remain = overall.slice(cursor + 1);
 
-    overall = entries(value, prefix);
+      overall = entries(value, prefix);
 
-    for(let i = 0; i < remain.length; i++) {
-      overall.push(remain[i]);
+      for(let i = 0; i < remain.length; i++) {
+        overall.push(remain[i]);
+      }
+      cursor = 0;
     }
-    return overall[cursor = 0];
   };
 
   dive(obj);
 
   const next = () => {
-
     if (cursor < overall.length) {
       let entry = overall[cursor];
       if (recursive) {
@@ -239,3 +264,4 @@ const createIterator = (obj, opts) => {
 
 module.exports = traverseJson;
 module.exports.createIterator = createIterator;
+module.exports.JSONPATH_SEP = JSONPATH_SEP;
