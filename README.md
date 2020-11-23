@@ -49,7 +49,7 @@ returning the iterator result with the full path and its value
 
 **Example**  
 ```javascript
-const traverseJson = require('.');
+const traverseJson = require('traverse-json');
 
 const options = {...};
 

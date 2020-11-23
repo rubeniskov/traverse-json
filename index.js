@@ -41,7 +41,7 @@ const {
  * @returns {TraverseIterator}
  * @example
  * ```javascript
- * const traverseJson = require('.');
+ * const traverseJson = require('traverse-json');
  *
  * const options = {...};
  *
