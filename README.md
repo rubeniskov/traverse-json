@@ -13,7 +13,8 @@ Many time I've encontered with the difficult task of mutate a object with nested
 
 <dl>
 <dt><a href="#traverseJson">traverseJson(obj, [opts])</a> ⇒ <code><a href="#TraverseIterator">TraverseIterator</a></code></dt>
-<dd><p>Create a function which traverses an object by its keys and values recursively</p>
+<dd><p>Creates a function which traverses an object by its keys and values recursively,
+returning the iterator result with the full path and its value</p>
 </dd>
 <dt><a href="#createIterator">createIterator(obj, [opts])</a> ⇒ <code>Iterable</code></dt>
 <dd><p>Returns a traverseJson iterable, usefull for use it in a for loop.</p>
@@ -34,7 +35,8 @@ Many time I've encontered with the difficult task of mutate a object with nested
 <a name="traverseJson"></a>
 
 ## traverseJson(obj, [opts]) ⇒ [<code>TraverseIterator</code>](#TraverseIterator)
-Create a function which traverses an object by its keys and values recursively
+Creates a function which traverses an object by its keys and values recursively,
+returning the iterator result with the full path and its value
 
 **Kind**: global function  
 

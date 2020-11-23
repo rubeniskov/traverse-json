@@ -25,7 +25,8 @@ const {
  */
 
 /**
- * Create a function which traverses an object by its keys and values recursively
+ * Creates a function which traverses an object by its keys and values recursively,
+ * returning the iterator result with the full path and its value
  *
  * @param {Object} obj
  * @param {TraverseJsonOptions} [opts]
