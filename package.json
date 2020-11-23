@@ -1,0 +1,41 @@
+{
+  "name": "traverse-json",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "nyc ava -v",
+    "docs": "{ cat HEADER.md; jsdoc2md index.js; } > README.md",
+    "coverage": "nyc report --reporter=lcov --reporter=text",
+    "report": "nyc report --reporter=html && http-server -o coverage"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run lint && npm test"
+    }
+  },
+  "devDependencies": {
+    "ava": "^3.13.0",
+    "eslint": "^7.12.1",
+    "http-server": "^0.12.3",
+    "jsdoc-to-markdown": "^6.0.1",
+    "nyc": "^15.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rubeniskov/traverse-json.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rubeniskov/traverse-json/issues"
+  },
+  "homepage": "https://github.com/rubeniskov/traverse-json#readme",
+  "dependencies": {
+    "is-plain-object": "^5.0.0",
+    "minimatch": "^3.0.4"
+  }
+}
