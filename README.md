@@ -191,7 +191,7 @@ for (let [k, v] of ientries) {
 | [opts.recursive] | <code>Boolean</code> | enable/disable nested arrays and objects recursion |
 | [opts.nested] | <code>Boolean</code> | also emit nested array or objects |
 | [opts.step] | <code>Boolean</code> | the step to increment, default 1 |
-| [opts.test] | <code>Boolean</code> | regexp, string minimatch or function to filter properties |
+| [opts.test] | <code>Boolean</code> | regexp, string [minimatch](https://www.npmjs.com/package/minimatch) or function to filter properties |
 
 <a name="TraverseIteratorResult"></a>
 
