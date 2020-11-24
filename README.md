@@ -39,7 +39,7 @@ returning the iterator result with the full path and its value.</p>
 <dl>
 <dt><a href="#TraverseJsonOptions">TraverseJsonOptions</a> : <code>Object</code></dt>
 <dd></dd>
-<dt><a href="#TraverseJsonEntry">TraverseJsonEntry</a> : <code>Array.&lt;string, any&gt;</code></dt>
+<dt><a href="#TraverseJsonEntry">TraverseJsonEntry</a> : <code>Array.&lt;String, any&gt;</code></dt>
 <dd></dd>
 <dt><a href="#TraverseIteratorResult">TraverseIteratorResult</a> : <code>Object</code></dt>
 <dd></dd>
@@ -265,13 +265,13 @@ for (let [k, v] of ientries) {
 
 <a name="TraverseJsonEntry"></a>
 
-## TraverseJsonEntry : <code>Array.&lt;string, any&gt;</code>
+## TraverseJsonEntry : <code>Array.&lt;String, any&gt;</code>
 **Kind**: global typedef  
 **Properties**
 
 | Name | Type | Description |
 | --- | --- | --- |
-| 0 | <code>string</code> | Object path |
+| 0 | <code>string</code> | Object [JSONPointer](https://tools.ietf.org/html/rfc6901) |
 | 1 | <code>any</code> | Value |
 
 <a name="TraverseIteratorResult"></a>

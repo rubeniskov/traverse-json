@@ -17,8 +17,8 @@ const {
  */
 
 /**
- * @typedef {Array<string, any>} TraverseJsonEntry
- * @prop {string} 0 Object path
+ * @typedef {Array<String, any>} TraverseJsonEntry
+ * @prop {string} 0 Object [JSONPointer](https://tools.ietf.org/html/rfc6901)
  * @prop {any} 1 Value
  */
 
