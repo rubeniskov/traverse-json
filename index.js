@@ -29,7 +29,10 @@ const {
  */
 
 /**
+ * Function iterator, [see](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator/next)
+ * [examples](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators#Advanced_generators)
  * @callback TraverseIterator
+ * @param extra a object or array to extends the current iteration
  * @returns {TraverseIteratorResult}
  */
 
@@ -223,11 +226,15 @@ const traverseJson = (obj, opts) => {
 
   dive(obj);
 
-  const next = () => {
+  let prefix, value;
+  const next = (extra) => {
+    if (extra !== undefined) {
+      dive(extra, prefix);
+    }
     if (cursor < overall.length) {
-      let entry = overall[cursor];
+      let entry = overall[cursor] || [];
+      [prefix, value] = entry;
       if (recursive) {
-        const [prefix, value] = entry || [];
         if (isTraversable(value)) {
           dive(value, prefix);
           if (!nested) {
@@ -246,6 +253,7 @@ const traverseJson = (obj, opts) => {
 
       return { value: entry, done: false };
     }
+
     return { done: true };
   };
 

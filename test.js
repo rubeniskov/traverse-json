@@ -247,6 +247,60 @@ test('should iterate recursively through the same key', (t) => {
   iterateEqual(t, ientries, expected, true);
 });
 
+test('should extends on fly the iterator', (t) => {
+
+  const recursiveObject = {
+    nested: 'foo',
+  };
+
+  const expected = [
+    [ '/nested', 'foo' ],
+    [ '/nested/nested', 'foo' ],
+    [ '/nested/nested/nested', 'foo' ],
+    [ '/nested/nested/nested/nested', 'foo' ],
+    [ '/nested/nested/nested/nested/nested', 'foo' ],
+  ];
+
+  const iteratee = traverseObject(recursiveObject);
+
+  for (let i = 0; i < 5; i ++) {
+    const { value, done } = iteratee(recursiveObject);
+    t.deepEqual(value, expected[i]);
+    t.false(done);
+  }
+
+  const { done } = iteratee();
+  t.true(done);
+});
+
+test('should extends on fly the iterator with nested paths', (t) => {
+
+  const recursiveObject = {
+    nested: {
+      foo: 'bar',
+    },
+  };
+
+  const expected = [
+    [ '/nested', { foo: 'bar' } ],
+    [ '/nested/nested', { foo: 'bar' } ],
+    [ '/nested/nested/nested', { foo: 'bar' } ],
+    [ '/nested/nested/nested/nested', { foo: 'bar' } ],
+    [ '/nested/nested/nested/nested/nested', { foo: 'bar' } ],
+  ];
+
+  const iteratee = traverseObject(recursiveObject, { test: '@nested' });
+
+  for (let i = 0; i < 5; i ++) {
+    const { value, done } = iteratee(recursiveObject);
+    t.deepEqual(value, expected[i]);
+    t.false(done);
+  }
+
+  const { done } = iteratee();
+  t.true(done);
+});
+
 test('should works as iterable', (t) => {
 
   const { createIterator } = traverseObject;
