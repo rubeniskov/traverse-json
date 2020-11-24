@@ -26,7 +26,8 @@ yarn add traverse-json
 <dl>
 <dt><a href="#traverseJson">traverseJson(obj, [opts])</a> ⇒ <code><a href="#TraverseIterator">TraverseIterator</a></code></dt>
 <dd><p>Creates a function which traverses an object by its keys and values recursively,
-returning the iterator result with the full path and its value</p>
+returning the iterator result with the full path and its value.</p>
+<p>By default options will be parsed as { test: opts } if string detected</p>
 </dd>
 <dt><a href="#createIterator">createIterator(obj, [opts])</a> ⇒ <code>Iterable</code></dt>
 <dd><p>Returns a traverseJson iterable, usefull for use it in a for loop.</p>
@@ -50,14 +51,16 @@ returning the iterator result with the full path and its value</p>
 
 ## traverseJson(obj, [opts]) ⇒ [<code>TraverseIterator</code>](#TraverseIterator)
 Creates a function which traverses an object by its keys and values recursively,
-returning the iterator result with the full path and its value
+returning the iterator result with the full path and its value.
+
+By default options will be parsed as { test: opts } if string detected
 
 **Kind**: global function  
 
 | Param | Type |
 | --- | --- |
 | obj | <code>Object</code> | 
-| [opts] | [<code>TraverseJsonOptions</code>](#TraverseJsonOptions) | 
+| [opts] | <code>String</code> \| [<code>TraverseJsonOptions</code>](#TraverseJsonOptions) | 
 
 **Example**  
 ```javascript
