@@ -44,7 +44,9 @@ returning the iterator result with the full path and its value.</p>
 <dt><a href="#TraverseIteratorResult">TraverseIteratorResult</a> : <code>Object</code></dt>
 <dd></dd>
 <dt><a href="#TraverseIterator">TraverseIterator</a> ⇒ <code><a href="#TraverseIteratorResult">TraverseIteratorResult</a></code></dt>
-<dd></dd>
+<dd><p>Function iterator, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator/next">see</a>
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators#Advanced_generators">examples</a></p>
+</dd>
 </dl>
 
 <a name="traverseJson"></a>
@@ -286,4 +288,12 @@ for (let [k, v] of ientries) {
 <a name="TraverseIterator"></a>
 
 ## TraverseIterator ⇒ [<code>TraverseIteratorResult</code>](#TraverseIteratorResult)
+Function iterator, [see](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator/next)
+[examples](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators#Advanced_generators)
+
 **Kind**: global typedef  
+
+| Param | Description |
+| --- | --- |
+| extra | a object or array to extends the current iteration |
+
