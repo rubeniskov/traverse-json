@@ -9,3 +9,15 @@ A complete traverse json function with `iterable` interface.
 ## Motivation
 
 Many time I've encontered with the difficult task of mutate a object with nested properties by filtering properties using a single function, so a `traverse-json` solves this using multiple options for traversing.
+
+
+## Installation
+
+### Npm:
+```shell
+npm install traverse-json --save
+```
+### Yarn:
+```shell
+yarn add traverse-json
+```
