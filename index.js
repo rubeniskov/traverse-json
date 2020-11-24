@@ -4,8 +4,8 @@ const {
   wrapIterator,
   entries,
   formatJsonPath,
-  JSONPATH_SEP,
   parseOptions,
+  parseJsonPath,
 } = require('./utils');
 
 /**
@@ -208,20 +208,24 @@ const traverseJson = (obj, opts) => {
   }
 
   const dive = (value, prefix) => {
+    if (!isTraversable(value) && prefix) {
+      const chunks = parseJsonPath(prefix);
+      value = { [chunks.pop()]: value };
+      prefix = formatJsonPath(chunks);
+    }
     if (rkey) {
       overall = value[rkey] !== undefined
         ? [[formatJsonPath(prefix, rkey), value[rkey]]]
         : [];
     } else {
-      const remain = overall.slice(cursor + 1);
-
+      const remain = overall.slice(cursor);
       overall = entries(value, prefix);
 
       for(let i = 0; i < remain.length; i++) {
         overall.push(remain[i]);
       }
-      cursor = 0;
     }
+    cursor = 0;
   };
 
   dive(obj);
@@ -232,7 +236,7 @@ const traverseJson = (obj, opts) => {
       dive(extra, prefix);
     }
     if (cursor < overall.length) {
-      let entry = overall[cursor] || [];
+      let entry = overall[cursor++] || [];
       [prefix, value] = entry;
       if (recursive) {
         if (isTraversable(value)) {
@@ -240,11 +244,7 @@ const traverseJson = (obj, opts) => {
           if (!nested) {
             return next();
           }
-        } else {
-          cursor += step;
         }
-      } else {
-        cursor += step;
       }
 
       if (typeof filter === 'function' && !filter(entry)) {
@@ -310,4 +310,3 @@ const createIterator = (obj, opts) => {
 
 module.exports = traverseJson;
 module.exports.createIterator = createIterator;
-module.exports.JSONPATH_SEP = JSONPATH_SEP;
