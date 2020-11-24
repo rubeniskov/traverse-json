@@ -5,6 +5,7 @@ const {
   entries,
   formatJsonPath,
   JSONPATH_SEP,
+  parseOptions,
 } = require('./utils');
 
 /**
@@ -34,10 +35,12 @@ const {
 
 /**
  * Creates a function which traverses an object by its keys and values recursively,
- * returning the iterator result with the full path and its value
+ * returning the iterator result with the full path and its value.
+ *
+ * By default options will be parsed as { test: opts } if string detected
  *
  * @param {Object} obj
- * @param {TraverseJsonOptions} [opts]
+ * @param {String|TraverseJsonOptions} [opts]
  * @returns {TraverseIterator}
  * @example
  * ```javascript
@@ -186,7 +189,7 @@ const traverseJson = (obj, opts) => {
     nested = false,
     test = null,
     step = 1,
-  } = { ...opts };
+  } = parseOptions(opts);
 
   let rkey;
   let filter;

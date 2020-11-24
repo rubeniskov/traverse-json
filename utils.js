@@ -43,10 +43,13 @@ const entries = (nested, prefix) => {
   return target;
 };
 
+const parseOptions = (opts) => typeof opts === 'string' ? ({ test: opts }) : { ...opts };
+
 module.exports = {
   isTraversable,
   createMatcher,
   wrapIterator,
   formatJsonPath,
   entries,
+  parseOptions,
 };

@@ -242,9 +242,7 @@ test('should iterate recursively through the same key', (t) => {
     ...recursiveObject, ...nestedObject,
   };
 
-  const ientries = traverseObject(merged, {
-    test: '@nested',
-  });
+  const ientries = traverseObject(merged, '@nested');
 
   iterateEqual(t, ientries, expected, true);
 });
