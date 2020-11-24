@@ -8,8 +8,12 @@ A complete traverse json function with `iterable` interface.
 
 ## Motivation
 
-Many time I've encontered with the difficult task of mutate a object with nested properties by filtering properties using a single function, so a `traverse-json` solves this using multiple options for traversing.
+Many time I've encontered with the difficult task of traverse a object with nested properties by filtering some of them using a single function, so a `traverse-json` solves this using multiple options for traversing.
 
+
+## Mutation
+
+For mutation this library is part of [mutant-json](https://github.com/rubeniskov/mutant-json) which wraps this `traverse-json` to take the advantages of filtering options.
 
 ## Installation
 
