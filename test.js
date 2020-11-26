@@ -288,7 +288,7 @@ test('should extends on fly the iterator', (t) => {
   t.true(done);
 });
 
-test('should extends on fly the iterator using previous prefixed', (t) => {
+test('should extends on fly the iterator using previous prefix', (t) => {
 
   const flattenObject = {
     foo: '1',
@@ -306,6 +306,33 @@ test('should extends on fly the iterator using previous prefixed', (t) => {
 
   for (let i = 0; i < 4; i ++) {
     const { value, done } = iteratee(i % 2 === 1 ? '2' : undefined);
+    t.deepEqual(value, expected[i]);
+    t.false(done);
+  }
+
+  const { done } = iteratee();
+  t.true(done);
+});
+
+test('should extends on fly the iterator using previous custom prefix', (t) => {
+
+  const flattenObject = {
+    foo: '1',
+    bar: '1',
+  };
+
+  const expected = [
+    [ '/foo', '1' ],
+    [ '/custom/prefix', '2' ],
+    [ '/bar', '1' ],
+    [ '/custom/prefix', '2' ],
+  ];
+
+  const iteratee = traverseObject(flattenObject);
+
+  for (let i = 0; i < 4; i ++) {
+    const extra = i % 2 === 1 ? ['/custom/prefix', '2'] : [];
+    const { value, done } = iteratee(...extra);
     t.deepEqual(value, expected[i]);
     t.false(done);
   }

@@ -231,9 +231,13 @@ const traverseJson = (obj, opts) => {
   dive(obj);
 
   let prefix, value;
-  const next = (extra) => {
-    if (extra !== undefined) {
-      dive(extra, prefix);
+  const next = (eprefix, extra) => {
+    if (eprefix !== undefined) {
+      if (typeof eprefix !== 'string' || eprefix[0] !== '/') {
+        extra = eprefix;
+        eprefix = undefined;
+      }
+      dive(extra, eprefix || prefix);
     }
     if (cursor < overall.length) {
       let entry = overall[cursor] || [];

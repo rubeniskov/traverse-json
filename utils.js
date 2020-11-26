@@ -19,7 +19,7 @@ const createMatcher = (test) => {
 
 const formatJsonPath = (...args) => (JSONPATH_SEP + args.filter(Boolean).join(JSONPATH_SEP)).replace(new RegExp(`[${JSONPATH_SEP}]+`), JSONPATH_SEP);
 
-const parseJsonPath = (path) => path.split(new RegExp(`[${JSONPATH_SEP}]+`));
+const parseJsonPath = (path) => path.split(new RegExp(`[${JSONPATH_SEP}]+`)).filter(Boolean);
 
 /**
  * Wraps a function iteratior to become an iterable
