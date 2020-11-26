@@ -96,6 +96,18 @@ test('should iterate through all entries of the given object recursively includi
   iterateEqual(t, ientries, expected);
 });
 
+test('should iterate through 1 depth entries and skip odd values', (t) => {
+
+  const expected = [
+    ['/a', 0],
+    ['/c', nestedObject.c],
+  ];
+
+  const ientries = traverseObject(nestedObject, { nested: true, recursive: false, step: 2 });
+
+  iterateEqual(t, ientries, expected);
+});
+
 test('should iterate through 1 depth entries of the given nested object', (t) => {
 
   const expected = [

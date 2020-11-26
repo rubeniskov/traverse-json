@@ -236,7 +236,8 @@ const traverseJson = (obj, opts) => {
       dive(extra, prefix);
     }
     if (cursor < overall.length) {
-      let entry = overall[cursor++] || [];
+      let entry = overall[cursor] || [];
+      cursor += step;
       [prefix, value] = entry;
       if (recursive) {
         if (isTraversable(value)) {
