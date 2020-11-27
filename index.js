@@ -40,7 +40,7 @@ const {
  * Creates a function which traverses an object by its keys and values recursively,
  * returning the iterator result with the full path and its value.
  *
- * By default options will be parsed as { test: opts } if string detected
+ * By default options will be parsed as { test: opts } if non object detected
  *
  * @param {Object} obj
  * @param {String|TraverseJsonOptions} [opts]

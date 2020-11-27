@@ -45,7 +45,7 @@ const entries = (nested, prefix) => {
   return target;
 };
 
-const parseOptions = (opts) => typeof opts === 'string' ? ({ test: opts }) : { ...opts };
+const parseOptions = (opts) => typeof opts !== 'object' ? ({ test: opts }) : { ...opts };
 
 module.exports = {
   isTraversable,
