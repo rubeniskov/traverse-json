@@ -49,6 +49,14 @@ const iterateEqual = (t, iterator, expected) => {
   t.true(result.done);
 };
 
+test('should does nothing when undefined object', (t) => {
+
+  iterateEqual(t, traverseObject(undefined), []);
+  iterateEqual(t, traverseObject(null), []);
+  iterateEqual(t, traverseObject(false), []);
+  iterateEqual(t, traverseObject('asdasd'), []);
+});
+
 test('should iterate through all entries of the given 1 depth object', (t) => {
 
   const expected = Object.entries(oneDepthObject).map(([k, v]) => [`/${k}`, v]);

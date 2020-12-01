@@ -33,7 +33,7 @@ const wrapIterator = (next) => ({
 
 const entries = (nested, prefix) => {
   const target = [];
-  const entries = Object.entries(nested);
+  const entries = nested && typeof nested === 'object' ? Object.entries(nested) : [];
   let i, len;
   for(len = entries.length, i = 0; i < len; i++) {
     const path = formatJsonPath(prefix, entries[i][0]);
