@@ -9,6 +9,7 @@
     "test": "nyc ava -v",
     "docs": "{ cat HEADER.md; jsdoc2md index.js; } > README.md",
     "coverage": "nyc report --reporter=lcov --reporter=text",
+    "postcoverage": "codecov",
     "report": "nyc report --reporter=html && http-server -o coverage"
   },
   "husky": {
@@ -22,14 +23,15 @@
     "eslint": "^7.12.1",
     "http-server": "^0.12.3",
     "jsdoc-to-markdown": "^6.0.1",
-    "nyc": "^15.1.0"
+    "nyc": "^15.1.0",
+    "codecov": "^3.8.1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rubeniskov/traverse-json.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "rubeniskov <me@rubeniskov.com> (http://rubeniskov.com)",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/rubeniskov/traverse-json/issues"
   },
